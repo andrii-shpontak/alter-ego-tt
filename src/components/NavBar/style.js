@@ -1,4 +1,7 @@
 export const styles = {
-  navbarLink: { textDecoration: 'none', color: '#fff' },
+  navbarLink: {
+    textDecoration: 'none',
+    color: '#fff',
+  },
   toolbar: { display: 'felx', justifyContent: 'space-between' },
 };

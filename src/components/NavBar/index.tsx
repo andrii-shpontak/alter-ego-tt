@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { styles } from './style';
 
 const NavBar = () => {
-  const [auth, setAuth] = React.useState(true);
+  const [auth, setAuth] = React.useState(false);
 
   return (
     <Box sx={{ flexGrow: 1, textAlign: 'center' }}>
@@ -18,28 +18,14 @@ const NavBar = () => {
             <Typography variant="h6">News</Typography>
           </Link>
           {(auth && (
-            <div>
-              <IconButton
-                size="large"
-                aria-label="account of current user"
-                aria-controls="menu-appbar"
-                aria-haspopup="true"
-                onClick={() => setAuth(!auth)}
-                color="inherit">
-                <AccountCircle />
-              </IconButton>
-            </div>
+            <Link to="/alter-ego-tt/profile" style={styles.navbarLink}>
+              <Typography variant="h6">Profile</Typography>
+            </Link>
           )) ||
             (!auth && (
-              <IconButton
-                size="large"
-                aria-label="account of current user"
-                aria-controls="menu-appbar"
-                aria-haspopup="true"
-                onClick={() => setAuth(!auth)}
-                color="inherit">
-                <Login />
-              </IconButton>
+              <Link to="/alter-ego-tt/login" style={styles.navbarLink}>
+                <Typography variant="h6">LogIn</Typography>
+              </Link>
             ))}
           <Typography variant="h6">Language</Typography>
         </Toolbar>
