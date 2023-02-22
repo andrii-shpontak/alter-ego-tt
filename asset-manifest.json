@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/alter-ego-tt/static/css/main.8ad41ea2.css",
+    "main.js": "/alter-ego-tt/static/js/main.55d096ef.js",
+    "static/media/error.gif": "/alter-ego-tt/static/media/error.42292aa12b6bc303ce99.gif",
+    "index.html": "/alter-ego-tt/index.html",
+    "static/media/getFetch.cjs": "/alter-ego-tt/static/media/getFetch.40f37ddea2378391108f.cjs",
+    "main.8ad41ea2.css.map": "/alter-ego-tt/static/css/main.8ad41ea2.css.map",
+    "main.55d096ef.js.map": "/alter-ego-tt/static/js/main.55d096ef.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.8ad41ea2.css",
+    "static/js/main.55d096ef.js"
+  ]
+}
