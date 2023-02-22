@@ -5,4 +5,5 @@ export const styles = {
   },
   toolbar: { display: 'flex', justifyContent: 'space-between', fontSize: 'large' },
   pages: { display: 'flex', width: '100px', flexDirection: 'row', justifyContent: 'space-between' },
+  language: { display: 'flex', flexDirection: 'row', alignItems: 'center' },
 };

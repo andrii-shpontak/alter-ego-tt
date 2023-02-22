@@ -1,13 +1,12 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { AppBar, Box, Button, Stack, Toolbar, Typography } from '@mui/material/';
+import { AppBar, Box, Button, FormControl, MenuItem, Select, Stack, Toolbar } from '@mui/material/';
 import { Link } from 'react-router-dom';
 import { CSSTransition } from 'react-transition-group';
 import { Home, Newspaper, Login, AccountBox, Language } from '@mui/icons-material/';
 
 import { styles } from './style';
-import { IState } from '../../store/slice';
-import { setLanguage } from '../../store/slice';
+import { IState, setLanguage } from '../../store/slice';
 import LogIn from '../logIn';
 
 const NavBar = () => {
@@ -16,7 +15,9 @@ const NavBar = () => {
   const auth: boolean = useSelector((state: IState) => state?.isAuth);
   const [popup, setPopup] = React.useState(false);
 
-  const showLogInPopUp = () => {};
+  const handleChange = () => {
+    dispatch(setLanguage());
+  };
 
   return (
     <Box sx={{ flexGrow: 1, textAlign: 'center', position: 'relative' }}>
@@ -39,16 +40,21 @@ const NavBar = () => {
             )) ||
               (!auth && <Login sx={{ cursor: 'pointer' }} onClick={() => setPopup(true)} />)}
           </Stack>
-          <Button
-            sx={{ color: 'white' }}
-            onClick={() => dispatch(setLanguage())}
-            startIcon={<Language />}>
-            {language}
-          </Button>
-
-          {/* <Typography sx={{ cursor: 'pointer' }} onClick={() => dispatch(setAuth())}>
-            Auth
-          </Typography> */}
+          <Stack sx={styles.language}>
+            <Language />
+            <FormControl variant="standard">
+              <Select
+                sx={{ color: 'white' }}
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                value={language}
+                label="Age"
+                onChange={handleChange}>
+                <MenuItem value={'en'}>English</MenuItem>
+                <MenuItem value={'ua'}>Ukraine</MenuItem>
+              </Select>
+            </FormControl>
+          </Stack>
         </Toolbar>
       </AppBar>
     </Box>

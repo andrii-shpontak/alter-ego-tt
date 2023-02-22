@@ -1,13 +1,16 @@
 import { Box, Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+
 import img from './error.gif';
 
 const ErrorMessage = () => {
+  const { t } = useTranslation();
   return (
     <Box padding={2}>
       <Typography variant="h6" align="center">
-        Page is not found <br />
-        Please <Link to="/alter-ego-tt/">return to Main page</Link>
+        {t('error.title_1')} <br />
+        <Link to="/alter-ego-tt/">{t('error.title_2')}</Link>
       </Typography>
       <img
         style={{

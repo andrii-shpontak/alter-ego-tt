@@ -1,9 +1,10 @@
 import React from 'react';
 import { Card, CardMedia, CardContent, Typography, Stack } from '@mui/material';
 import { Backspace } from '@mui/icons-material/';
-import { removePostById } from '../../store/slice';
 import { useDispatch } from 'react-redux';
+
 import { IData } from '../../tyeps';
+import { removePostById } from '../../store/slice';
 
 const CustomCard: React.FC<IData> = (item) => {
   const dispatch = useDispatch();

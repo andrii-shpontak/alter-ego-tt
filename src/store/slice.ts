@@ -1,5 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
+import i18next from 'i18next';
+
 import { IData } from '../tyeps';
+
 export interface IState {
   isLoading: boolean;
   isError: boolean;
@@ -15,7 +18,7 @@ const localAuth: boolean =
   localStorage.getItem('auth') !== null ? JSON.parse(localStorage.getItem('auth')!) : false;
 
 const localLanguage: string =
-  localStorage.getItem('language') !== null ? localStorage.getItem('language')! : 'EN';
+  localStorage.getItem('language') !== null ? localStorage.getItem('language')! : 'en';
 
 const initialState: IState = {
   isLoading: false,
@@ -42,8 +45,9 @@ const postsSlice = createSlice({
       localStorage.setItem('auth', JSON.stringify(state.isAuth));
     },
     setLanguage: (state) => {
-      state.languge === 'EN' ? (state.languge = 'UA') : (state.languge = 'EN');
+      state.languge === 'en' ? (state.languge = 'ua') : (state.languge = 'en');
       localStorage.setItem('language', state.languge);
+      i18next.changeLanguage(state.languge);
     },
     setLoading: (state, action) => {
       state.isLoading = action.payload;

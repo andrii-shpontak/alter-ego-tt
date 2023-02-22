@@ -1,12 +1,13 @@
-import React from 'react';
 import { Container, Typography } from '@mui/material';
 import { Stack } from '@mui/system';
+import { useTranslation } from 'react-i18next';
 
 const MainPage = () => {
+  const { t } = useTranslation();
   return (
     <Container>
       <Stack pt={3} textAlign={'center'}>
-        <Typography variant="h4">Welcome on this site!</Typography>
+        <Typography variant="h4">{t('main.title')}</Typography>
         <Typography variant="body1">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad voluptates non iure magni,
           saepe libero architecto explicabo blanditiis earum facere tempora expedita, voluptate

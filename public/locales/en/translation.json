@@ -1,0 +1,26 @@
+{
+  "error": {
+    "title_1": "Page is not found",
+    "title_2": "Please return to Main page"
+  },
+  "login": {
+    "enter": "Enter in Your profile",
+    "wrong": "Wrong user name or password!",
+    "username": "Your name",
+    "password": "Your password",
+    "submit": "Submit",
+    "clear": "Clear"
+  },
+  "main": {
+    "title": "Welcome on this site!"
+  },
+  "news": {
+    "refresh": "Refresh",
+    "loadmore": "Load More"
+  },
+  "profile": {
+    "welcome": "Welcome in Your profile",
+    "unauthorized": "You are not authorized",
+    "logout": "Log Out"
+  }
+}

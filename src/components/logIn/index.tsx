@@ -3,6 +3,8 @@ import { Box, Button, Stack, TextField, Typography } from '@mui/material';
 import { useForm, Controller } from 'react-hook-form';
 import CloseIcon from '@mui/icons-material/Close';
 import { useDispatch } from 'react-redux';
+import { useTranslation } from 'react-i18next';
+
 import { setAuth } from '../../store/slice';
 
 type Props = {
@@ -15,6 +17,7 @@ const user = {
 };
 
 const LogIn: React.FC<Props> = ({ setPopup }) => {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const { handleSubmit, reset, control } = useForm();
   const [wrongUser, setWrongUser] = React.useState(false);
@@ -52,11 +55,11 @@ const LogIn: React.FC<Props> = ({ setPopup }) => {
           borderRadius: '20px',
         }}>
         <Typography variant="h4" align="center">
-          Enter in Your profile
+          {t('login.enter')}
         </Typography>
         {wrongUser && (
           <Typography variant="h6" color={'#c50d00'}>
-            Wrong user name or password!
+            {t('login.wrong')}
           </Typography>
         )}
         <form
@@ -83,7 +86,7 @@ const LogIn: React.FC<Props> = ({ setPopup }) => {
             defaultValue=""
             render={({ field: { onChange, value }, fieldState: { error } }) => (
               <TextField
-                label="username"
+                label={t('login.username')}
                 variant="filled"
                 value={value}
                 onChange={onChange}
@@ -99,7 +102,7 @@ const LogIn: React.FC<Props> = ({ setPopup }) => {
             defaultValue=""
             render={({ field: { onChange, value }, fieldState: { error } }) => (
               <TextField
-                label="password"
+                label={t('login.password')}
                 variant="filled"
                 value={value}
                 onChange={onChange}
@@ -111,10 +114,10 @@ const LogIn: React.FC<Props> = ({ setPopup }) => {
             rules={{ required: 'Password is required!' }}
           />
           <Button sx={{ marginTop: '15px' }} color="success" type="submit">
-            Subit
+            {t('login.submit')}
           </Button>
           <Button sx={{ marginTop: '15px' }} color="warning" onClick={() => reset()}>
-            Clear
+            {t('login.clear')}
           </Button>
         </form>
       </Stack>
