@@ -25,14 +25,16 @@ const NewsPage: React.FC = () => {
     }
   };
 
-  React.useEffect(() => {
+  if (data.length < 1) {
     getData();
-    // eslint-disable-next-line
-  }, []);
+  }
 
   if (data) {
     return (
       <Container sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+        <Button sx={{ margin: '15px auto' }} variant="contained" onClick={() => getData()}>
+          Refresh
+        </Button>
         {data.length > 0 &&
           data.slice(0, offset).map(({ ...item }) => {
             return <CustomCard key={item.id} {...item} />;

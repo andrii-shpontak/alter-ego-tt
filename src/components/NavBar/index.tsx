@@ -1,33 +1,54 @@
 import React from 'react';
-import { AppBar, Box, Toolbar, Typography, IconButton } from '@mui/material/';
-import { AccountCircle, Login } from '@mui/icons-material/';
+import { useSelector, useDispatch } from 'react-redux';
+import { AppBar, Box, Button, Stack, Toolbar, Typography } from '@mui/material/';
 import { Link } from 'react-router-dom';
+import { CSSTransition } from 'react-transition-group';
+import { Home, Newspaper, Login, AccountBox, Language } from '@mui/icons-material/';
+
 import { styles } from './style';
+import { IState } from '../../store/slice';
+import { setLanguage } from '../../store/slice';
+import LogIn from '../logIn';
 
 const NavBar = () => {
-  const [auth, setAuth] = React.useState(false);
+  const dispatch = useDispatch();
+  const language: string = useSelector((state: IState) => state?.languge);
+  const auth: boolean = useSelector((state: IState) => state?.isAuth);
+  const [popup, setPopup] = React.useState(false);
+
+  const showLogInPopUp = () => {};
 
   return (
-    <Box sx={{ flexGrow: 1, textAlign: 'center' }}>
+    <Box sx={{ flexGrow: 1, textAlign: 'center', position: 'relative' }}>
+      <CSSTransition in={popup} classNames="popup" timeout={500} unmountOnExit>
+        <LogIn setPopup={setPopup} />
+      </CSSTransition>
       <AppBar position="static">
         <Toolbar sx={styles.toolbar}>
-          <Link to="/alter-ego-tt/" style={styles.navbarLink}>
-            <Typography variant="h6">Main page</Typography>
-          </Link>
-          <Link to="/alter-ego-tt/news" style={styles.navbarLink}>
-            <Typography variant="h6">News</Typography>
-          </Link>
-          {(auth && (
-            <Link to="/alter-ego-tt/profile" style={styles.navbarLink}>
-              <Typography variant="h6">Profile</Typography>
+          <Stack sx={styles.pages}>
+            <Link to="/alter-ego-tt/" style={styles.navbarLink}>
+              <Home />
             </Link>
-          )) ||
-            (!auth && (
-              <Link to="/alter-ego-tt/login" style={styles.navbarLink}>
-                <Typography variant="h6">LogIn</Typography>
+            <Link to="/alter-ego-tt/news" style={styles.navbarLink}>
+              <Newspaper />
+            </Link>
+            {(auth && (
+              <Link to="/alter-ego-tt/profile" style={styles.navbarLink}>
+                <AccountBox />
               </Link>
-            ))}
-          <Typography variant="h6">Language</Typography>
+            )) ||
+              (!auth && <Login sx={{ cursor: 'pointer' }} onClick={() => setPopup(true)} />)}
+          </Stack>
+          <Button
+            sx={{ color: 'white' }}
+            onClick={() => dispatch(setLanguage())}
+            startIcon={<Language />}>
+            {language}
+          </Button>
+
+          {/* <Typography sx={{ cursor: 'pointer' }} onClick={() => dispatch(setAuth())}>
+            Auth
+          </Typography> */}
         </Toolbar>
       </AppBar>
     </Box>

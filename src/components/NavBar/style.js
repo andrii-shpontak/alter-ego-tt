@@ -3,5 +3,6 @@ export const styles = {
     textDecoration: 'none',
     color: '#fff',
   },
-  toolbar: { display: 'felx', justifyContent: 'space-between' },
+  toolbar: { display: 'flex', justifyContent: 'space-between', fontSize: 'large' },
+  pages: { display: 'flex', width: '100px', flexDirection: 'row', justifyContent: 'space-between' },
 };

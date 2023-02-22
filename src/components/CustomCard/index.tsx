@@ -5,7 +5,7 @@ import { removePostById } from '../../store/slice';
 import { useDispatch } from 'react-redux';
 import { IData } from '../../tyeps';
 
-const CustomCard = (item: IData) => {
+const CustomCard: React.FC<IData> = (item) => {
   const dispatch = useDispatch();
   const { body, title, id } = item;
 
