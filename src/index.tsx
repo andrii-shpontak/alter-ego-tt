@@ -34,14 +34,11 @@ i18next
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
-  <React.StrictMode>
-    <BrowserRouter>
-      <Provider store={store}>
-        <Suspense fallback={<Loader />}>
-          <App />
-        </Suspense>
-      </Provider>
-    </BrowserRouter>
-    ,
-  </React.StrictMode>,
+  <BrowserRouter>
+    <Provider store={store}>
+      <Suspense fallback={<Loader />}>
+        <App />
+      </Suspense>
+    </Provider>
+  </BrowserRouter>,
 );
