@@ -1,0 +1,20 @@
+export const styles = {
+  container: { textAlign: 'center', marginTop: '15px' },
+  card: { display: 'flex', flexDirection: 'column', justifyContent: 'center' },
+  welcome: { margin: '25px auto' },
+  stack: { minHeight: '200px', marginBottom: '20px' },
+  cardMedia: { width: '200px', borderRadius: '3px', margin: '0 auto' },
+  buttonOpen: { margin: '0 auto' },
+  // form: {
+  //   display: 'flex',
+  //   width: '300px',
+  //   flexDirection: 'column',
+  //   justifyContent: 'center',
+  //   alignItems: 'center',
+  //   margin: '25px auto',
+  //   borderRadius: '5px',
+  //   background: '#fafafad',
+  // },
+  buttonForm: { marginTop: '15px' },
+  buttonUnAuth: { margin: '25px auto' },
+};

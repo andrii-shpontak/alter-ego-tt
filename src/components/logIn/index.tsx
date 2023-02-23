@@ -1,31 +1,33 @@
 import React from 'react';
 import { Box, Button, Stack, TextField, Typography } from '@mui/material';
-import { useForm, Controller } from 'react-hook-form';
-import CloseIcon from '@mui/icons-material/Close';
+import { useForm, Controller, SubmitHandler } from 'react-hook-form';
+import { Close } from '@mui/icons-material/';
 import { useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 
 import { setAuth } from '../../store/slice';
+import { styles } from './style';
+import { ILogInInputs, ILogInProps, ILogInUser } from '../../tyeps';
 
-type Props = {
-  setPopup: (value: boolean) => void;
-};
+const user: ILogInUser =
+  localStorage.getItem('user') !== null
+    ? JSON.parse(localStorage.getItem('user')!)
+    : {
+        username: 'admin',
+        password: '12345',
+      };
 
-const user = {
-  username: 'admin',
-  password: '12345',
-};
-
-const LogIn: React.FC<Props> = ({ setPopup }) => {
+const LogIn: React.FC<ILogInProps> = ({ setPopup }) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
-  const { handleSubmit, reset, control } = useForm();
+  const { handleSubmit, reset, control } = useForm<ILogInInputs>();
   const [wrongUser, setWrongUser] = React.useState(false);
 
-  const onSubmit = (dataMessage: any) => {
+  const onSubmit: SubmitHandler<ILogInInputs> = (dataMessage) => {
     if (dataMessage.username === user.username && dataMessage.password === user.password) {
       dispatch(setAuth());
       reset();
+      window.location.href = '/alter-ego-tt/profile';
       setPopup(false);
       setWrongUser(false);
     } else {
@@ -35,25 +37,8 @@ const LogIn: React.FC<Props> = ({ setPopup }) => {
   };
 
   return (
-    <Box
-      pt={5}
-      sx={{
-        zIndex: 1000,
-        position: 'absolute',
-        display: 'flex',
-        flexDirection: 'column',
-        height: '100vh',
-        width: '100%',
-        alignItems: 'center',
-        justifyContent: 'center',
-        background: 'rgba(255, 255, 255, 0.8)',
-      }}>
-      <Stack
-        sx={{
-          padding: '15px',
-          background: '#adadad',
-          borderRadius: '20px',
-        }}>
+    <Box pt={5} sx={styles.box}>
+      <Stack sx={styles.stack}>
         <Typography variant="h4" align="center">
           {t('login.enter')}
         </Typography>
@@ -76,10 +61,7 @@ const LogIn: React.FC<Props> = ({ setPopup }) => {
             background: '#fafafad',
           }}
           onSubmit={handleSubmit(onSubmit)}>
-          <CloseIcon
-            sx={{ position: 'absolute', top: '10px', right: '10px', cursor: 'pointer' }}
-            onClick={() => setPopup(false)}
-          />
+          <Close sx={styles.close} onClick={() => setPopup(false)} />
           <Controller
             name="username"
             control={control}
@@ -113,10 +95,10 @@ const LogIn: React.FC<Props> = ({ setPopup }) => {
             )}
             rules={{ required: 'Password is required!' }}
           />
-          <Button sx={{ marginTop: '15px' }} color="success" type="submit">
+          <Button sx={styles.button} color="success" type="submit">
             {t('login.submit')}
           </Button>
-          <Button sx={{ marginTop: '15px' }} color="warning" onClick={() => reset()}>
+          <Button sx={styles.button} color="warning" onClick={() => reset()}>
             {t('login.clear')}
           </Button>
         </form>

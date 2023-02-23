@@ -8,9 +8,14 @@ const ErrorMessage = () => {
   const { t } = useTranslation();
   return (
     <Box padding={2}>
-      <Typography variant="h6" align="center">
-        {t('error.title_1')} <br />
-        <Link to="/alter-ego-tt/">{t('error.title_2')}</Link>
+      <Typography variant="h5" align="center">
+        {t('error.error_1')}
+        <br />
+        {t('error.error_2')}
+        <br />
+        {t('error.error_3')}
+        <br />
+        <Link to="/alter-ego-tt/">{t('error.error_4')}</Link>
       </Typography>
       <img
         style={{

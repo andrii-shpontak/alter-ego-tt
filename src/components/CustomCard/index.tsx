@@ -5,45 +5,32 @@ import { useDispatch } from 'react-redux';
 
 import { IData } from '../../tyeps';
 import { removePostById } from '../../store/slice';
+import { styles } from './style';
 
 const CustomCard: React.FC<IData> = (item) => {
   const dispatch = useDispatch();
-  const { body, title, id } = item;
+  const { summary, title, id, imageUrl } = item;
 
   return (
-    <Card sx={{ margin: '15px auto', display: 'flex', flexDirection: 'column' }}>
-      <Stack flexDirection={'row'} justifyContent={'space-between'} margin={1}>
-        <CardMedia
-          sx={{ width: '200px', borderRadius: '3px' }}
-          component="img"
-          alt="photo"
-          image={`https://picsum.photos/200/200?random=${item.id}`}
-        />
-        <CardContent sx={{ display: { xs: 'none', sm: 'block' } }}>
+    <Card sx={styles.card}>
+      <Stack sx={styles.stack}>
+        <CardMedia sx={styles.cardMedia} component="img" alt="photo" image={imageUrl} />
+        <CardContent sx={styles.cardContentBig}>
           <Typography gutterBottom variant="h5" align="center">
             {title}
-            <br />
-            {id}
           </Typography>
           <Typography gutterBottom variant="body1" align="center">
-            {body}
+            {summary.replace('[…]', '...')}
           </Typography>
         </CardContent>
-        <Backspace
-          sx={{
-            cursor: 'pointer',
-            transition: 'all 0.2s linear',
-            '&:hover': { color: '#d30000', transform: 'scale(1.2)' },
-          }}
-          onClick={() => dispatch(removePostById(id))}
-        />
+        <Backspace sx={styles.backspace} onClick={() => dispatch(removePostById(id))} />
       </Stack>
-      <CardContent sx={{ display: { xs: 'block', sm: 'none' } }}>
+      <CardContent sx={styles.cardContentSmall}>
         <Typography gutterBottom variant="h5" align="center">
           {title}
         </Typography>
         <Typography gutterBottom variant="body1" align="center">
-          {body}
+          {summary}
         </Typography>
       </CardContent>
     </Card>

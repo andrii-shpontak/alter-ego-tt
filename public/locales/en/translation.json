@@ -1,26 +1,38 @@
 {
   "error": {
-    "title_1": "Page is not found",
-    "title_2": "Please return to Main page"
+    "error_1": "What a mess!",
+    "error_2": "We could not retrieve data from the server.",
+    "error_3": "Try again later, if the error occurs again - write to the developer (andriishpontak@gmail.com)",
+    "error_4": "Please return to Main page"
   },
   "login": {
     "enter": "Enter in Your profile",
-    "wrong": "Wrong user name or password!",
+    "wrong": "Username or password entered incorrectly.",
     "username": "Your name",
     "password": "Your password",
     "submit": "Submit",
     "clear": "Clear"
   },
   "main": {
-    "title": "Welcome on this site!"
+    "title": "Welcome on this site!",
+    "subtitle": "Here you can find out the latest news from the world of cosmonautics."
   },
   "news": {
     "refresh": "Refresh",
-    "loadmore": "Load More"
+    "loadmore": "Load More",
+    "all_news": "All the news at the moment"
   },
   "profile": {
     "welcome": "Welcome in Your profile",
     "unauthorized": "You are not authorized",
-    "logout": "Log Out"
+    "logout": "Log Out",
+    "avatar": "Change avatar",
+    "corect": "Paste a VALID image link",
+    "img_link": "https://***.img",
+    "edit_data": "Change login details",
+    "cancel": "Cancel",
+    "change_data": "Enter your new profile login details",
+    "new_name": "New name",
+    "new_password": "New Password"
   }
 }

@@ -1,13 +1,16 @@
 import React from 'react';
-import { Button, Container } from '@mui/material/';
+import { Button, Container, Typography } from '@mui/material/';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import { useTranslation } from 'react-i18next';
 
-import CustomCard from '../../components/CustomCard';
+import CustomCard from '../../components/customCard';
 import { IData } from '../../tyeps';
 import { IState } from '../../store/slice';
 import { setLoading, setError, getPostsData } from '../../store/slice';
+import ErrorMessage from '../../components/errorMessage';
+
+import { styles } from './style';
 
 const NewsPage: React.FC = () => {
   const { t } = useTranslation();
@@ -17,8 +20,10 @@ const NewsPage: React.FC = () => {
 
   const getData = async () => {
     dispatch(setLoading(true));
+    dispatch(setError(false));
+
     try {
-      const { data } = await axios.get('https://jsonplaceholder.typicode.com/posts', {
+      const { data } = await axios.get('https://api.spaceflightnewsapi.net/v3/articles', {
         headers: {
           Accept: 'application/json',
         },
@@ -38,24 +43,28 @@ const NewsPage: React.FC = () => {
 
   if (data) {
     return (
-      <Container sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-        <Button sx={{ margin: '15px auto' }} variant="contained" onClick={() => getData()}>
+      <Container sx={styles.container}>
+        <Button sx={styles.buttonRefresh} variant="contained" onClick={() => getData()}>
           {t('news.refresh')}
         </Button>
         {data.length > 0 &&
           data.slice(0, offset).map(({ ...item }) => {
             return <CustomCard key={item.id} {...item} />;
           })}
-        <Button
-          sx={{ margin: '10px auto' }}
-          variant="contained"
-          onClick={() => setOffset(offset + 5)}>
-          {t('news.loadmore')}
-        </Button>
+
+        {offset < data.length ? (
+          <Button sx={styles.buttonLoad} variant="contained" onClick={() => setOffset(offset + 5)}>
+            {t('news.loadmore')}
+          </Button>
+        ) : (
+          <Typography sx={styles.typography} variant="h4">
+            {t('news.all_news')}
+          </Typography>
+        )}
       </Container>
     );
   } else {
-    return <div>Something went wrong!</div>;
+    return <ErrorMessage />;
   }
 };
 

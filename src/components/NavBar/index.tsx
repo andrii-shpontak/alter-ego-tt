@@ -1,26 +1,35 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { AppBar, Box, Button, FormControl, MenuItem, Select, Stack, Toolbar } from '@mui/material/';
+import { AppBar, Box, FormControl, MenuItem, Select, Stack, Toolbar } from '@mui/material/';
 import { Link } from 'react-router-dom';
 import { CSSTransition } from 'react-transition-group';
 import { Home, Newspaper, Login, AccountBox, Language } from '@mui/icons-material/';
+import { disablePageScroll, enablePageScroll } from 'scroll-lock';
 
 import { styles } from './style';
 import { IState, setLanguage } from '../../store/slice';
 import LogIn from '../logIn';
+import Loader from '../loader';
 
 const NavBar = () => {
   const dispatch = useDispatch();
   const language: string = useSelector((state: IState) => state?.languge);
   const auth: boolean = useSelector((state: IState) => state?.isAuth);
+  const isLoading: boolean = useSelector((state: IState) => state?.isLoading);
   const [popup, setPopup] = React.useState(false);
+
+  if (popup) {
+    disablePageScroll();
+  } else {
+    enablePageScroll();
+  }
 
   const handleChange = () => {
     dispatch(setLanguage());
   };
 
   return (
-    <Box sx={{ flexGrow: 1, textAlign: 'center', position: 'relative' }}>
+    <Box sx={styles.box}>
       <CSSTransition in={popup} classNames="popup" timeout={500} unmountOnExit>
         <LogIn setPopup={setPopup} />
       </CSSTransition>
@@ -38,13 +47,13 @@ const NavBar = () => {
                 <AccountBox />
               </Link>
             )) ||
-              (!auth && <Login sx={{ cursor: 'pointer' }} onClick={() => setPopup(true)} />)}
+              (!auth && <Login sx={styles.login} onClick={() => setPopup(true)} />)}
           </Stack>
           <Stack sx={styles.language}>
             <Language />
             <FormControl variant="standard">
               <Select
-                sx={{ color: 'white' }}
+                sx={styles.select}
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"
                 value={language}
@@ -57,6 +66,7 @@ const NavBar = () => {
           </Stack>
         </Toolbar>
       </AppBar>
+      {isLoading && <Loader />}
     </Box>
   );
 };

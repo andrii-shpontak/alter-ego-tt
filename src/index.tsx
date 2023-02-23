@@ -10,6 +10,7 @@ import { Provider } from 'react-redux';
 import App from './App';
 import './index.css';
 import { store } from './store/store';
+import Loader from './components/loader';
 
 const currentLanguage = localStorage.getItem('language') || 'en';
 
@@ -27,7 +28,7 @@ i18next
       caches: ['cookie'],
     },
     backend: {
-      loadPath: '/locales/{{lng}}/translation.json',
+      loadPath: './locales/{{lng}}/translation.json',
     },
   });
 
@@ -36,7 +37,7 @@ root.render(
   <React.StrictMode>
     <BrowserRouter>
       <Provider store={store}>
-        <Suspense fallback={<div>loading...</div>}>
+        <Suspense fallback={<Loader />}>
           <App />
         </Suspense>
       </Provider>

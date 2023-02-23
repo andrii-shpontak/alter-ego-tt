@@ -1,0 +1,32 @@
+export const styles = {
+  box: {
+    zIndex: 1000,
+    position: 'absolute',
+    display: 'flex',
+    flexDirection: 'column',
+    height: '100vh',
+    width: '100%',
+    alignItems: 'center',
+    justifyContent: 'center',
+    background: 'rgba(0, 0, 0, 0.5)',
+  },
+  stack: {
+    padding: '15px',
+    background: '#fff',
+    borderRadius: '20px',
+  },
+  // form: {
+  //   position: 'relative',
+  //   display: 'flex',
+  //   width: '300px',
+  //   flexDirection: 'column',
+  //   justifyContent: 'center',
+  //   alignItems: 'center',
+  //   marginTop: 25,
+  //   paddingTop: 45,
+  //   borderRadius: '5px',
+  //   background: '#fafafad',
+  // },
+  close: { position: 'absolute', top: '10px', right: '10px', cursor: 'pointer' },
+  button: { marginTop: '15px' },
+};
