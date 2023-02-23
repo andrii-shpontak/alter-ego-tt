@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/alter-ego-tt/static/css/main.eb930d47.css",
-    "main.js": "/alter-ego-tt/static/js/main.f44bd71a.js",
+    "main.js": "/alter-ego-tt/static/js/main.bdfd8b48.js",
     "static/media/myLogo.png": "/alter-ego-tt/static/media/myLogo.c963853ac1f41490778a.png",
     "static/media/error.gif": "/alter-ego-tt/static/media/error.42292aa12b6bc303ce99.gif",
     "index.html": "/alter-ego-tt/index.html",
     "static/media/getFetch.cjs": "/alter-ego-tt/static/media/getFetch.40f37ddea2378391108f.cjs",
     "main.eb930d47.css.map": "/alter-ego-tt/static/css/main.eb930d47.css.map",
-    "main.f44bd71a.js.map": "/alter-ego-tt/static/js/main.f44bd71a.js.map"
+    "main.bdfd8b48.js.map": "/alter-ego-tt/static/js/main.bdfd8b48.js.map"
   },
   "entrypoints": [
     "static/css/main.eb930d47.css",
-    "static/js/main.f44bd71a.js"
+    "static/js/main.bdfd8b48.js"
   ]
 }
