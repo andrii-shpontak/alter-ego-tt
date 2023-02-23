@@ -8,6 +8,7 @@ import { useTranslation } from 'react-i18next';
 import { setAuth } from '../../store/slice';
 import { styles } from './style';
 import { ILogInInputs, ILogInProps, ILogInUser } from '../../tyeps';
+import { Link, Navigate, Outlet } from 'react-router-dom';
 
 const user: ILogInUser =
   localStorage.getItem('user') !== null
@@ -22,12 +23,13 @@ const LogIn: React.FC<ILogInProps> = ({ setPopup }) => {
   const dispatch = useDispatch();
   const { handleSubmit, reset, control } = useForm<ILogInInputs>();
   const [wrongUser, setWrongUser] = React.useState(false);
+  const [isAuth, setIsAuth] = React.useState(false);
 
   const onSubmit: SubmitHandler<ILogInInputs> = (dataMessage) => {
     if (dataMessage.username === user.username && dataMessage.password === user.password) {
       dispatch(setAuth());
       reset();
-      window.location.href = '/alter-ego-tt/profile';
+      setIsAuth(true);
       setPopup(false);
       setWrongUser(false);
     } else {
@@ -38,6 +40,7 @@ const LogIn: React.FC<ILogInProps> = ({ setPopup }) => {
 
   return (
     <Box pt={5} sx={styles.box}>
+      {isAuth ? <Navigate to="/alter-ego-tt/profile" /> : <Outlet />}
       <Stack sx={styles.stack}>
         <Typography variant="h4" align="center">
           {t('login.enter')}
