@@ -23,6 +23,14 @@ export interface IData {
   events: Event[];
 }
 
+export interface IState {
+  isLoading: boolean;
+  isError: boolean;
+  isAuth: boolean;
+  languge: string;
+  posts: IData[];
+}
+
 export interface ILogInProps {
   setPopup: (value: boolean) => void;
 }

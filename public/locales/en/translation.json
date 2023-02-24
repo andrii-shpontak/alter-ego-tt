@@ -1,8 +1,8 @@
 {
   "error": {
+    "not_found": "Page not found",
     "error_1": "What a mess!",
-    "error_2": "We could not retrieve data from the server.",
-    "error_3": "Try again later, if the error occurs again - write to the developer (andriishpontak@gmail.com)",
+    "error_2": "We could not retrieve data from the server. Try again later, if the error occurs again - write to the developer (andriishpontak@gmail.com)",
     "error_4": "Please return to Main page"
   },
   "login": {

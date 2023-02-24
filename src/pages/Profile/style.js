@@ -4,7 +4,7 @@ export const styles = {
   welcome: { margin: '25px auto' },
   stack: { minHeight: '200px', marginBottom: '20px' },
   cardMedia: { width: '200px', borderRadius: '3px', margin: '0 auto' },
-  buttonOpen: { margin: '0 auto' },
+  buttonOpen: { margin: '10px auto' },
   // form: {
   //   display: 'flex',
   //   width: '300px',

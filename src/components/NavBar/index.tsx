@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { AppBar, Box, FormControl, MenuItem, Select, Stack, Toolbar } from '@mui/material/';
 import { Link } from 'react-router-dom';
@@ -7,16 +7,17 @@ import { Home, Newspaper, Login, AccountBox, Language } from '@mui/icons-materia
 import { disablePageScroll, enablePageScroll } from 'scroll-lock';
 
 import { styles } from './style';
-import { IState, setLanguage } from '../../store/slice';
+import { setLanguage } from '../../store/slice';
 import LogIn from '../logIn';
 import Loader from '../loader';
+import { IState } from '../../types';
 
 const NavBar = () => {
   const dispatch = useDispatch();
   const language: string = useSelector((state: IState) => state?.languge);
   const auth: boolean = useSelector((state: IState) => state?.isAuth);
   const isLoading: boolean = useSelector((state: IState) => state?.isLoading);
-  const [popup, setPopup] = React.useState(false);
+  const [popup, setPopup] = useState(false);
 
   if (popup) {
     disablePageScroll();
@@ -24,7 +25,7 @@ const NavBar = () => {
     enablePageScroll();
   }
 
-  const handleChange = () => {
+  const handleLanguageChange = () => {
     dispatch(setLanguage());
   };
 
@@ -49,6 +50,7 @@ const NavBar = () => {
             )) ||
               (!auth && <Login sx={styles.login} onClick={() => setPopup(true)} />)}
           </Stack>
+
           <Stack sx={styles.language}>
             <Language />
             <FormControl variant="standard">
@@ -58,7 +60,7 @@ const NavBar = () => {
                 id="demo-simple-select"
                 value={language}
                 label="Age"
-                onChange={handleChange}>
+                onChange={handleLanguageChange}>
                 <MenuItem value={'en'}>English</MenuItem>
                 <MenuItem value={'ua'}>Ukraine</MenuItem>
               </Select>
@@ -71,4 +73,4 @@ const NavBar = () => {
   );
 };
 
-export default NavBar;
+export default React.memo(NavBar);

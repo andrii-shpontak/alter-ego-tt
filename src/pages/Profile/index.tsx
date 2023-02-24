@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button, Card, CardMedia, Container, Stack, TextField, Typography } from '@mui/material';
 import { useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
@@ -8,13 +8,13 @@ import { useForm, Controller, SubmitHandler } from 'react-hook-form';
 import { setAuth } from '../../store/slice';
 
 import { styles } from './style';
-import { IProfileAvatar, IProfileInputs, IProfileUser } from '../../tyeps';
+import { IProfileAvatar, IProfileInputs, IProfileUser } from '../../types';
 
 const ProfilePage = () => {
   const dispatch = useDispatch();
   const { handleSubmit, reset, control } = useForm<IProfileInputs>();
-  const [changeUser, setChangeUser] = React.useState(false);
-  const [changeAvatar, setChangeAvatar] = React.useState(false);
+  const [changeUser, setChangeUser] = useState(false);
+  const [changeAvatar, setChangeAvatar] = useState(false);
   const { t } = useTranslation();
 
   const user: IProfileUser =
@@ -38,11 +38,13 @@ const ProfilePage = () => {
     reset();
     setChangeUser(false);
   };
+
   const onSubmitImage: SubmitHandler<IProfileInputs> = (dataMessage) => {
     localStorage.setItem('avatar', JSON.stringify(dataMessage));
     reset();
     setChangeAvatar(false);
   };
+
   return (
     <Container sx={styles.container}>
       <Card sx={styles.card}>
@@ -53,13 +55,7 @@ const ProfilePage = () => {
           <CardMedia sx={styles.cardMedia} component="img" alt="photo" image={avatar.userimage} />
         </Stack>
 
-        {!changeAvatar && (
-          <Button onClick={() => setChangeAvatar(true)} sx={styles.buttonOpen} variant="contained">
-            {t('profile.avatar')}
-          </Button>
-        )}
-
-        {changeAvatar && (
+        {changeAvatar ? (
           <Stack>
             <Typography variant="h6">{t('profile.corect')}</Typography>
             <form
@@ -99,6 +95,10 @@ const ProfilePage = () => {
               </Button>
             </form>
           </Stack>
+        ) : (
+          <Button onClick={() => setChangeAvatar(true)} sx={styles.buttonOpen} variant="contained">
+            {t('profile.avatar')}
+          </Button>
         )}
 
         {!changeUser && (
@@ -180,4 +180,4 @@ const ProfilePage = () => {
   );
 };
 
-export default ProfilePage;
+export default React.memo(ProfilePage);

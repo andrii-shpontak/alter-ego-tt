@@ -1,3 +1,5 @@
+import React from 'react';
+
 import './style.scss';
 
 import logo from './myLogo.png';
@@ -14,4 +16,4 @@ const Loader = () => {
   );
 };
 
-export default Loader;
+export default React.memo(Loader);

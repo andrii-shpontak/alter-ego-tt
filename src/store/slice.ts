@@ -1,15 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import i18next from 'i18next';
 
-import { IData } from '../tyeps';
-
-export interface IState {
-  isLoading: boolean;
-  isError: boolean;
-  isAuth: boolean;
-  languge: string;
-  posts: IData[];
-}
+import { IData, IState } from '../types';
 
 const localPosts: IData[] =
   localStorage.getItem('posts') !== null ? JSON.parse(localStorage.getItem('posts')!) : [];

@@ -1,3 +1,4 @@
+import React from 'react';
 import { Box, Container, Typography } from '@mui/material';
 import { Stack } from '@mui/system';
 import { useTranslation } from 'react-i18next';
@@ -26,4 +27,4 @@ const MainPage = () => {
   );
 };
 
-export default MainPage;
+export default React.memo(MainPage);

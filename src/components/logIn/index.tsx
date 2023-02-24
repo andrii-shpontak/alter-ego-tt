@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Box, Button, Stack, TextField, Typography } from '@mui/material';
 import { useForm, Controller, SubmitHandler } from 'react-hook-form';
 import { Close } from '@mui/icons-material/';
@@ -7,64 +7,61 @@ import { useTranslation } from 'react-i18next';
 
 import { setAuth } from '../../store/slice';
 import { styles } from './style';
-import { ILogInInputs, ILogInProps, ILogInUser } from '../../tyeps';
-import { Link, Navigate, Outlet } from 'react-router-dom';
-
-const user: ILogInUser =
-  localStorage.getItem('user') !== null
-    ? JSON.parse(localStorage.getItem('user')!)
-    : {
-        username: 'admin',
-        password: '12345',
-      };
+import { ILogInInputs, ILogInProps, ILogInUser } from '../../types';
+import { Navigate } from 'react-router-dom';
 
 const LogIn: React.FC<ILogInProps> = ({ setPopup }) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const { handleSubmit, reset, control } = useForm<ILogInInputs>();
-  const [wrongUser, setWrongUser] = React.useState(false);
-  const [isAuth, setIsAuth] = React.useState(false);
+  const [wrongUser, setWrongUser] = useState(false);
+  const [isAuth, setIsAuth] = useState(false);
+
+  const user: ILogInUser =
+    localStorage.getItem('user') !== null
+      ? JSON.parse(localStorage.getItem('user')!)
+      : {
+          username: 'admin',
+          password: '12345',
+        };
 
   const onSubmit: SubmitHandler<ILogInInputs> = (dataMessage) => {
     if (dataMessage.username === user.username && dataMessage.password === user.password) {
       dispatch(setAuth());
       reset();
-      setIsAuth(true);
       setPopup(false);
       setWrongUser(false);
+      setIsAuth(true);
     } else {
       setWrongUser(true);
       reset();
     }
   };
 
+  if (isAuth) {
+    return <Navigate to="/alter-ego-tt/profile" />;
+  }
+
   return (
     <Box pt={5} sx={styles.box}>
-      {isAuth ? <Navigate to="/alter-ego-tt/profile" /> : <Outlet />}
       <Stack sx={styles.stack}>
+        <Close sx={styles.close} onClick={() => setPopup(false)} />
         <Typography variant="h4" align="center">
           {t('login.enter')}
         </Typography>
-        {wrongUser && (
-          <Typography variant="h6" color={'#c50d00'}>
-            {t('login.wrong')}
-          </Typography>
-        )}
+
         <form
           style={{
-            position: 'relative',
             display: 'flex',
             width: '300px',
             flexDirection: 'column',
             justifyContent: 'center',
             alignItems: 'center',
-            marginTop: 25,
             paddingTop: 45,
             borderRadius: '5px',
             background: '#fafafad',
           }}
           onSubmit={handleSubmit(onSubmit)}>
-          <Close sx={styles.close} onClick={() => setPopup(false)} />
           <Controller
             name="username"
             control={control}
@@ -98,7 +95,12 @@ const LogIn: React.FC<ILogInProps> = ({ setPopup }) => {
             )}
             rules={{ required: 'Password is required!' }}
           />
-          <Button sx={styles.button} color="success" type="submit">
+          {wrongUser && (
+            <Typography variant="h6" color={'#c50d00'}>
+              {t('login.wrong')}
+            </Typography>
+          )}
+          <Button sx={styles.button} variant="contained" color="success" type="submit">
             {t('login.submit')}
           </Button>
           <Button sx={styles.button} color="warning" onClick={() => reset()}>
@@ -110,4 +112,4 @@ const LogIn: React.FC<ILogInProps> = ({ setPopup }) => {
   );
 };
 
-export default LogIn;
+export default React.memo(LogIn);

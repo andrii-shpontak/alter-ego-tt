@@ -8,7 +8,7 @@ import HttpApi from 'i18next-http-backend';
 import { Provider } from 'react-redux';
 
 import App from './App';
-import './index.css';
+import './index.scss';
 import { store } from './store/store';
 import Loader from './components/loader';
 

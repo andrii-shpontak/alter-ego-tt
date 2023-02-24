@@ -6,16 +6,21 @@ export const styles = {
     width: '100%',
   },
   stack: {
-    flexDirection: 'row',
     justifyContent: 'space-between',
     margin: '8px',
+    flexDirection: { xs: 'column', sm: 'row' },
   },
-  cardMedia: { width: '200px', borderRadius: '3px' },
+  cardMedia: {
+    width: '200px',
+    height: '200px',
+    borderRadius: '3px',
+    margin: { xs: '0 auto', sm: 'none' },
+  },
+  deleteWrapper: { flexDirection: 'row', justifyContent: 'flex-end' },
   backspace: {
+    margin: '10px',
     cursor: 'pointer',
     transition: 'all 0.2s linear',
     '&:hover': { color: '#d30000', transform: 'scale(1.2)' },
   },
-  cardContentBig: { display: { xs: 'none', sm: 'block' } },
-  cardContentSmall: { display: { xs: 'block', sm: 'none' } },
 };

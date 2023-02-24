@@ -3,7 +3,7 @@ import { Card, CardMedia, CardContent, Typography, Stack } from '@mui/material';
 import { Backspace } from '@mui/icons-material/';
 import { useDispatch } from 'react-redux';
 
-import { IData } from '../../tyeps';
+import { IData } from '../../types';
 import { removePostById } from '../../store/slice';
 import { styles } from './style';
 
@@ -15,7 +15,7 @@ const CustomCard: React.FC<IData> = (item) => {
     <Card sx={styles.card}>
       <Stack sx={styles.stack}>
         <CardMedia sx={styles.cardMedia} component="img" alt="photo" image={imageUrl} />
-        <CardContent sx={styles.cardContentBig}>
+        <CardContent>
           <Typography gutterBottom variant="h5" align="center">
             {title}
           </Typography>
@@ -23,18 +23,12 @@ const CustomCard: React.FC<IData> = (item) => {
             {summary.replace('[…]', '...')}
           </Typography>
         </CardContent>
+      </Stack>
+      <Stack sx={styles.deleteWrapper}>
         <Backspace sx={styles.backspace} onClick={() => dispatch(removePostById(id))} />
       </Stack>
-      <CardContent sx={styles.cardContentSmall}>
-        <Typography gutterBottom variant="h5" align="center">
-          {title}
-        </Typography>
-        <Typography gutterBottom variant="body1" align="center">
-          {summary}
-        </Typography>
-      </CardContent>
     </Card>
   );
 };
 
-export default CustomCard;
+export default React.memo(CustomCard);
