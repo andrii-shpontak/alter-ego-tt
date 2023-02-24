@@ -15,7 +15,7 @@ const CustomCard: React.FC<IData> = (item) => {
     <Card sx={styles.card}>
       <Stack sx={styles.stack}>
         <CardMedia sx={styles.cardMedia} component="img" alt="photo" image={imageUrl} />
-        <CardContent>
+        <CardContent sx={styles.cardContent}>
           <Typography gutterBottom variant="h5" align="center">
             {title}
           </Typography>
