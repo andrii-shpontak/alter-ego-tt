@@ -3,7 +3,6 @@ export const styles = {
     backgroundImage:
       'url("https://img.etimg.com/thumb/msid-89631138,width-1440,height-1080,imgsize-70174,resizemode-75/small-biz/entrepreneurship/satellites-are-generating-tonnes-of-data-in-space-beaming-it-back-to-earth-is-a-problem.jpg")',
     backgroundRepeat: 'no-repeat',
-    backgroundColor: 'blakc',
     backgroundAttachment: 'fixed',
     backgroundPosition: 'center',
     backgroundSize: 'cover',
@@ -18,6 +17,5 @@ export const styles = {
     padding: { xs: 3, sm: 2, md: 20 },
     marginTop: { xs: 6, ms: 4, md: 'none' },
   },
-  boxLayout: { background: 'white', opacity: '0.7', borderRadius: '5px' },
   typography: { padding: '15px 5px' },
 };

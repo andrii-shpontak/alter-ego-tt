@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Box, Button, Stack, TextField, Typography } from '@mui/material';
 import { useForm, Controller, SubmitHandler } from 'react-hook-form';
 import { Close } from '@mui/icons-material/';
@@ -10,7 +10,7 @@ import { styles } from './style';
 import { ILogInInputs, ILogInProps, ILogInUser } from '../../types';
 import { Navigate } from 'react-router-dom';
 
-const LogIn: React.FC<ILogInProps> = ({ setPopup }) => {
+const LogIn: React.FC<ILogInProps> = ({ setPopup, mode }) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const { handleSubmit, reset, control } = useForm<ILogInInputs>();
@@ -53,13 +53,13 @@ const LogIn: React.FC<ILogInProps> = ({ setPopup }) => {
         <form
           style={{
             display: 'flex',
-            width: '300px',
+            width: '100%',
             flexDirection: 'column',
             justifyContent: 'center',
             alignItems: 'center',
             paddingTop: 45,
             borderRadius: '5px',
-            background: '#fafafad',
+            background: mode ? '#121212' : '#fafafad',
           }}
           onSubmit={handleSubmit(onSubmit)}>
           <Controller

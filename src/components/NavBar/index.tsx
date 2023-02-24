@@ -3,17 +3,25 @@ import { useSelector, useDispatch } from 'react-redux';
 import { AppBar, Box, Button, FormControl, MenuItem, Select, Stack, Toolbar } from '@mui/material/';
 import { Link } from 'react-router-dom';
 import { CSSTransition } from 'react-transition-group';
-import { Home, Newspaper, Login, AccountBox, Language } from '@mui/icons-material/';
+import {
+  Home,
+  Newspaper,
+  Login,
+  AccountBox,
+  Language,
+  DarkMode,
+  LightMode,
+} from '@mui/icons-material/';
 import { disablePageScroll, enablePageScroll } from 'scroll-lock';
 
 import { styles } from './style';
 import { setLanguage } from '../../store/slice';
 import LogIn from '../logIn';
 import Loader from '../loader';
-import { IState } from '../../types';
+import { INavbarProps, IState } from '../../types';
 import { useTranslation } from 'react-i18next';
 
-const NavBar = () => {
+const NavBar: React.FC<INavbarProps> = ({ mode, chandeMode }) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const language: string = useSelector((state: IState) => state?.languge);
@@ -34,7 +42,7 @@ const NavBar = () => {
   return (
     <Box sx={styles.box}>
       <CSSTransition in={popup} classNames="popup" timeout={500} unmountOnExit>
-        <LogIn setPopup={setPopup} />
+        <LogIn setPopup={setPopup} mode={mode} />
       </CSSTransition>
       <AppBar position="static">
         <Toolbar sx={styles.toolbar}>
@@ -52,6 +60,8 @@ const NavBar = () => {
               <Newspaper sx={styles.iconXs} />
             </Link>
           </Stack>
+
+          {mode ? <DarkMode onClick={chandeMode} /> : <LightMode onClick={chandeMode} />}
 
           <Stack sx={styles.language}>
             {(auth && (

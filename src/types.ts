@@ -1,5 +1,3 @@
-// API response
-
 export interface Launch {
   id: string;
   provider: string;
@@ -31,8 +29,18 @@ export interface IState {
   posts: IData[];
 }
 
+export interface INavbarProps {
+  mode: boolean;
+  chandeMode: any;
+}
+
+export interface IMainState {
+  mode: boolean;
+}
+
 export interface ILogInProps {
   setPopup: (value: boolean) => void;
+  mode: boolean;
 }
 
 export interface ILogInInputs {

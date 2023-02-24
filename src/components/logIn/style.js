@@ -12,9 +12,9 @@ export const styles = {
   },
   stack: {
     position: 'relative',
-    width: '300px',
+    width: '310px',
     padding: '30px 15px 15px 15px',
-    background: '#fff',
+    background: 'inherit',
     borderRadius: '20px',
   },
   close: { position: 'absolute', top: '10px', right: '10px', cursor: 'pointer' },
