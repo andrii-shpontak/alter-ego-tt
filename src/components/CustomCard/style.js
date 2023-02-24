@@ -16,7 +16,7 @@ export const styles = {
     borderRadius: '3px',
     margin: { xs: '0 auto', sm: 'none' },
   },
-  cardContent: { width: '1000px' },
+  cardContent: { width: { ms: '', md: '1000px' } },
   deleteWrapper: { flexDirection: 'row', justifyContent: 'flex-end' },
   backspace: {
     margin: '10px',
