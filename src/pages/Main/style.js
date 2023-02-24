@@ -11,11 +11,13 @@ export const styles = {
     width: '100%',
     display: 'flex',
     justifyContent: 'center',
+    textAlign: 'center',
   },
   boxSize: {
     width: { xs: '100%', sm: '50%', md: '40%' },
     padding: { xs: 3, sm: 2, md: 20 },
+    marginTop: { xs: 6, ms: 4, md: 'none' },
   },
-  boxLayout: { background: 'white', opacity: '0.7' },
+  boxLayout: { background: 'white', opacity: '0.7', borderRadius: '5px' },
   typography: { padding: '15px 5px' },
 };

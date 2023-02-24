@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { AppBar, Box, FormControl, MenuItem, Select, Stack, Toolbar } from '@mui/material/';
+import { AppBar, Box, Button, FormControl, MenuItem, Select, Stack, Toolbar } from '@mui/material/';
 import { Link } from 'react-router-dom';
 import { CSSTransition } from 'react-transition-group';
 import { Home, Newspaper, Login, AccountBox, Language } from '@mui/icons-material/';
@@ -11,8 +11,10 @@ import { setLanguage } from '../../store/slice';
 import LogIn from '../logIn';
 import Loader from '../loader';
 import { IState } from '../../types';
+import { useTranslation } from 'react-i18next';
 
 const NavBar = () => {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const language: string = useSelector((state: IState) => state?.languge);
   const auth: boolean = useSelector((state: IState) => state?.isAuth);
@@ -38,20 +40,36 @@ const NavBar = () => {
         <Toolbar sx={styles.toolbar}>
           <Stack sx={styles.pages}>
             <Link to="/alter-ego-tt/" style={styles.navbarLink}>
-              <Home />
+              <Button sx={styles.buttonSm} startIcon={<Home />}>
+                {t('navbar.main')}
+              </Button>
+              <Home sx={styles.iconXs} />
             </Link>
             <Link to="/alter-ego-tt/news" style={styles.navbarLink}>
-              <Newspaper />
+              <Button sx={styles.buttonSm} startIcon={<Newspaper />}>
+                {t('navbar.news')}
+              </Button>
+              <Newspaper sx={styles.iconXs} />
             </Link>
-            {(auth && (
-              <Link to="/alter-ego-tt/profile" style={styles.navbarLink}>
-                <AccountBox />
-              </Link>
-            )) ||
-              (!auth && <Login sx={styles.login} onClick={() => setPopup(true)} />)}
           </Stack>
 
           <Stack sx={styles.language}>
+            {(auth && (
+              <Link to="/alter-ego-tt/profile" style={styles.navbarLink}>
+                <Button sx={styles.buttonSm} startIcon={<AccountBox />}>
+                  {t('navbar.profile')}
+                </Button>
+                <AccountBox sx={styles.iconXs} />
+              </Link>
+            )) ||
+              (!auth && (
+                <>
+                  <Button sx={styles.buttonSm} startIcon={<Login />} onClick={() => setPopup(true)}>
+                    {t('navbar.login')}
+                  </Button>
+                  <Login sx={styles.login} onClick={() => setPopup(true)} />
+                </>
+              ))}
             <Language />
             <FormControl variant="standard">
               <Select
@@ -62,7 +80,7 @@ const NavBar = () => {
                 label="Age"
                 onChange={handleLanguageChange}>
                 <MenuItem value={'en'}>English</MenuItem>
-                <MenuItem value={'ua'}>Ukraine</MenuItem>
+                <MenuItem value={'ua'}>Українська</MenuItem>
               </Select>
             </FormControl>
           </Stack>

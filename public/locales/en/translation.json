@@ -34,5 +34,11 @@
     "change_data": "Enter your new profile login details",
     "new_name": "New name",
     "new_password": "New Password"
+  },
+  "navbar": {
+    "main": "Main",
+    "news": "News",
+    "profile": "Profile",
+    "login": "LogIn"
   }
 }
