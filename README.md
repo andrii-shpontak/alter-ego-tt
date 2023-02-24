@@ -1,3 +1,21 @@
+This is a test project.
+
+See preview: [DEMO LINK](https://andrii-shpontak.github.io/alter-ego-tt/
+)
+
+Technology stack: ( React.ts, TupeScript, Material UI,
+React-Redux, Redux-Toolkit, React-Router-Dom).
+
+To enter the profile enter (name: admin, password: 12345).
+
+In the profile, you can change the login data and optionally insert the URL of your avatar.
+
+The number of news in the list is 10.
+
+When manually changing the route, the site gives an error.
+I don't understand why, probably this is how GC-pages works
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
