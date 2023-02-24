@@ -14,7 +14,7 @@ export const styles = {
   },
   boxSize: {
     width: { xs: '100%', sm: '50%', md: '40%' },
-    padding: { xs: 3, sm: 2, md: 20 },
+    padding: { xs: 3, sm: 2, md: 5 },
     marginTop: { xs: 6, ms: 4, md: 'none' },
   },
   typography: { padding: '15px 5px' },

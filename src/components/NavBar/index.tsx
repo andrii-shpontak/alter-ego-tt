@@ -61,8 +61,6 @@ const NavBar: React.FC<INavbarProps> = ({ mode, chandeMode }) => {
             </Link>
           </Stack>
 
-          {mode ? <DarkMode onClick={chandeMode} /> : <LightMode onClick={chandeMode} />}
-
           <Stack sx={styles.language}>
             {(auth && (
               <Link to="/alter-ego-tt/profile" style={styles.navbarLink}>
@@ -80,7 +78,7 @@ const NavBar: React.FC<INavbarProps> = ({ mode, chandeMode }) => {
                   <Login sx={styles.login} onClick={() => setPopup(true)} />
                 </>
               ))}
-            <Language />
+            <Language fontSize="small" />
             <FormControl variant="standard">
               <Select
                 sx={styles.select}
@@ -93,6 +91,11 @@ const NavBar: React.FC<INavbarProps> = ({ mode, chandeMode }) => {
                 <MenuItem value={'ua'}>Українська</MenuItem>
               </Select>
             </FormControl>
+            {mode ? (
+              <DarkMode sx={styles.mode} onClick={chandeMode} />
+            ) : (
+              <LightMode sx={styles.mode} onClick={chandeMode} />
+            )}
           </Stack>
         </Toolbar>
       </AppBar>
