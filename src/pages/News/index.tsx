@@ -38,9 +38,7 @@ const NewsPage: React.FC = () => {
   };
 
   useEffect(() => {
-    if (data.length < 1) {
-      getData();
-    }
+    getData();
     // eslint-disable-next-line
   }, []); // Component did mount
 
