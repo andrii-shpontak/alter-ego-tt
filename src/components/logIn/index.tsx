@@ -43,7 +43,19 @@ const LogIn: React.FC<ILogInProps> = ({ setPopup, mode }) => {
   }
 
   return (
-    <Box pt={5} sx={styles.box}>
+    <Box
+      pt={5}
+      sx={{
+        zIndex: 1000,
+        position: 'absolute',
+        display: 'flex',
+        flexDirection: 'column',
+        height: '100vh',
+        width: '100%',
+        alignItems: 'center',
+        justifyContent: 'center',
+        background: mode ? 'rgba(0, 0, 0, 0.8)' : 'rgba(255, 255, 255, 0.8)',
+      }}>
       <Stack sx={styles.stack}>
         <Close sx={styles.close} onClick={() => setPopup(false)} />
         <Typography variant="h4" align="center">

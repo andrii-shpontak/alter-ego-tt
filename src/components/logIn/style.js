@@ -1,15 +1,4 @@
 export const styles = {
-  box: {
-    zIndex: 1000,
-    position: 'absolute',
-    display: 'flex',
-    flexDirection: 'column',
-    height: '100vh',
-    width: '100%',
-    alignItems: 'center',
-    justifyContent: 'center',
-    background: 'rgba(0, 0, 0, 0.5)',
-  },
   stack: {
     position: 'relative',
     width: '310px',

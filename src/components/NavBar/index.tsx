@@ -29,6 +29,11 @@ const NavBar: React.FC<INavbarProps> = ({ mode, chandeMode }) => {
   const isLoading: boolean = useSelector((state: IState) => state?.isLoading);
   const [popup, setPopup] = useState(false);
 
+  const onModeClick = () => {
+    localStorage.setItem('mode', JSON.stringify(!mode));
+    chandeMode();
+  };
+
   if (popup) {
     disablePageScroll();
   } else {
@@ -92,9 +97,9 @@ const NavBar: React.FC<INavbarProps> = ({ mode, chandeMode }) => {
               </Select>
             </FormControl>
             {mode ? (
-              <DarkMode sx={styles.mode} onClick={chandeMode} />
+              <DarkMode sx={styles.mode} onClick={onModeClick} />
             ) : (
-              <LightMode sx={styles.mode} onClick={chandeMode} />
+              <LightMode sx={styles.mode} onClick={onModeClick} />
             )}
           </Stack>
         </Toolbar>

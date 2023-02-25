@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -10,8 +10,11 @@ import NewsPage from './pages/news';
 import ProfilePage from './pages/profile';
 import PrivateRoute from './utils/router/PrivateRoute';
 
+const getMode =
+  localStorage.getItem('mode') !== null ? JSON.parse(localStorage.getItem('mode')!) : false;
+
 function App() {
-  const [darkMode, setDarkMode] = useState(false);
+  const [darkMode, setDarkMode] = useState(getMode);
 
   const myTheme = createTheme({
     palette: {
