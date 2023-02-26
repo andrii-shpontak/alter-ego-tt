@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { Button, Container, Typography } from '@mui/material/';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
@@ -17,6 +17,12 @@ const NewsPage: React.FC = () => {
   const dispatch = useDispatch();
   const data: IData[] = useSelector((state: IState) => state?.posts);
   const [offset, setOffset] = useState<number>(5);
+
+  const newsList = useMemo(() => {
+    return data.slice(0, offset).map(({ ...item }) => {
+      return <CustomCard key={item.id} {...item} />;
+    });
+  }, [data, offset]);
 
   const getData = async () => {
     dispatch(setLoading(true));
@@ -42,7 +48,7 @@ const NewsPage: React.FC = () => {
     // eslint-disable-next-line
   }, []); // Component did mount
 
-  if (!data || data.length < 1) {
+  if (!data || data.length === 0) {
     return <ErrorMessage />;
   }
 
@@ -51,10 +57,8 @@ const NewsPage: React.FC = () => {
       <Button sx={styles.buttonRefresh} variant="contained" onClick={() => getData()}>
         {t('news.refresh')}
       </Button>
-      {data.length > 0 &&
-        data.slice(0, offset).map(({ ...item }) => {
-          return <CustomCard key={item.id} {...item} />;
-        })}
+
+      {newsList}
 
       {offset < data.length ? (
         <Button sx={styles.buttonLoad} variant="contained" onClick={() => setOffset(offset + 5)}>
