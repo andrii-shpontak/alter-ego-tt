@@ -1,16 +1,24 @@
 {
   "files": {
     "main.css": "/alter-ego-tt/static/css/main.eb930d47.css",
-    "main.js": "/alter-ego-tt/static/js/main.1f1e2a4f.js",
+    "main.js": "/alter-ego-tt/static/js/main.d82843ea.js",
+    "static/js/227.c5f18e0d.chunk.js": "/alter-ego-tt/static/js/227.c5f18e0d.chunk.js",
+    "static/js/111.de47a92a.chunk.js": "/alter-ego-tt/static/js/111.de47a92a.chunk.js",
+    "static/js/860.c89bda94.chunk.js": "/alter-ego-tt/static/js/860.c89bda94.chunk.js",
+    "static/js/677.4fee7bc7.chunk.js": "/alter-ego-tt/static/js/677.4fee7bc7.chunk.js",
     "static/media/myLogo.png": "/alter-ego-tt/static/media/myLogo.c963853ac1f41490778a.png",
     "static/media/error.gif": "/alter-ego-tt/static/media/error.42292aa12b6bc303ce99.gif",
     "index.html": "/alter-ego-tt/index.html",
     "static/media/getFetch.cjs": "/alter-ego-tt/static/media/getFetch.40f37ddea2378391108f.cjs",
     "main.eb930d47.css.map": "/alter-ego-tt/static/css/main.eb930d47.css.map",
-    "main.1f1e2a4f.js.map": "/alter-ego-tt/static/js/main.1f1e2a4f.js.map"
+    "main.d82843ea.js.map": "/alter-ego-tt/static/js/main.d82843ea.js.map",
+    "227.c5f18e0d.chunk.js.map": "/alter-ego-tt/static/js/227.c5f18e0d.chunk.js.map",
+    "111.de47a92a.chunk.js.map": "/alter-ego-tt/static/js/111.de47a92a.chunk.js.map",
+    "860.c89bda94.chunk.js.map": "/alter-ego-tt/static/js/860.c89bda94.chunk.js.map",
+    "677.4fee7bc7.chunk.js.map": "/alter-ego-tt/static/js/677.4fee7bc7.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.eb930d47.css",
-    "static/js/main.1f1e2a4f.js"
+    "static/js/main.d82843ea.js"
   ]
 }
